@@ -1,0 +1,63 @@
+- name: Configure DNF to be faster
+  become: yes
+  blockinfile:
+    path: /etc/dnf/dnf.conf
+    block: |
+      fastestmirror=True
+      max_parallel_downloads=10
+      defaultyes=True
+      keepcache=True
+  tags:
+    - essentials
+
+- name: Install RPM Fusion
+  become: yes
+  dnf:
+    name:
+    - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
+    - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
+    state: present
+    disable_gpg_check: yes
+  tags:
+    - essentials
+    - software
+
+- name: Update Groups
+  become: yes
+  dnf:
+    name:
+      - "@core"
+      - "@multimedia"
+      - "@sound-and-video"
+    state: latest
+  tags:
+    - essentials
+    - software
+    - codecs
+
+- name: Install essential programs
+  become: yes
+  dnf:
+    name: [firefox, zsh, neovim, tmux, flatpak, git, pip]
+  tags:
+    - essentials
+    - software
+
+- name: Add the flathub flatpak repository remote to the user installation
+  become: yes
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  tags:
+    - essentials
+    - software
+
+- name: Install eseential flatpaks
+  become: yes
+  community.general.flatpak:
+    name: [com.obsproject.Studio, com.discordapp.Discord, org.keepassxc.KeePassXC, org.gimp.GIMP]
+    state: present
+  tags:
+    - essentials
+    - software

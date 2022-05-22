@@ -1,0 +1,17 @@
+---
+- name: Clone dofiles
+  tags: dotfiles, stow, install
+  git:
+    repo: https://github.com/Mattszczp/dotfiles.git
+    dest: ~/.dotfiles
+    accept_newhostkey: yes
+
+- name: Make sure Stow is installed
+  tags: dotfiles, stow, install
+  dnf:
+    name: stow
+    state: present
+
+- name: Stow dotfiles
+  shell: cd $HOME/.dotfiles && ./fedora
+  tags: dotfiles, stow, install

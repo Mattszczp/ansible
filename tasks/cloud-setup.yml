@@ -1,0 +1,85 @@
+---
+- name: Add google-cloud-sdk repo
+  become: yes
+  yum_repository:
+    name: google-cloud-cli
+    baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
+    description: Google Cloud SDK Repository
+    gpgcheck: true
+    repo_gpgcheck: false
+    gpgkey:
+      - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+      - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+- name: Install gcloud and kubectl
+  become: yes
+  dnf:
+    name: [libxcrypt-compat.x86_64, google-cloud-cli, kubectl]
+    update_cache: true
+
+- name: Install Azure CLI
+  pip:
+    name: azure-cli
+    state: latest
+
+- name: Install AWS CLI
+  become: yes
+  dnf:
+    name: awscli
+    state: latest
+
+- name: make sure dnf-plugins.core installed
+  become: yes
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: install docker repository
+  become: yes
+  command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+- name: make sure docker from distro is not installed
+  become: yes
+  yum:
+    name: [docker, docker-common, container-selinux, docker-selinux, docker-engine]
+    state: absent
+
+- name: install docker
+  become: yes
+  dnf:
+    name: [docker-ce, docker-ce-cli, containerd.io, docker-compose-plugin]
+    state: present
+    update_cache: true
+
+- name: make sure that I'm in docker group
+  become: yes
+  ansible.builtin.user:
+    name: kurtwood
+    groups: [docker]
+    append: yes
+
+- name: Install hashicorp repository
+  become: yes
+  command: dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+
+- name: Install terraform and packer
+  become: yes
+  dnf:
+    name: [terraform, packer]
+    state: latest
+    update_cache: true
+
+- name: Install Helm
+  become: yes
+  command: bash <  < (curl -s -S -U https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3)
+
+- name: Extract k9s to /bin
+  ansible.builtin.unarchive:
+    src: https://github.com/derailed/k9s/releases/download/latest/k9s_Linux_x86_64.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+    include: [k9s]
+
+
+
+
