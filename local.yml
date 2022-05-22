@@ -12,3 +12,4 @@
     - include_tasks: tasks/zsh-setup.yml
     - include_tasks: tasks/cloud-setup.yml
     - include_tasks: tasks/languages-setup.yml
+    - include_tasks: tasks/nvim-setup.yml

@@ -38,7 +38,7 @@
 - name: Install essential programs
   become: yes
   dnf:
-    name: [firefox, zsh, neovim, tmux, flatpak, git, pip]
+    name: [firefox, zsh, neovim, tmux, flatpak, git, pip, thunderbird]
   tags:
     - essentials
     - software

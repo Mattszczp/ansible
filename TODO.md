@@ -1,7 +1,7 @@
 # Basic setup
-- Setup Go
-- Setup Python
+- Setup Golang
 - Setup Node
+- Setup Python
 - Setup neovim
     - Install Plug
 # Gaming setup

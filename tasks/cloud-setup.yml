@@ -69,17 +69,9 @@
     state: latest
     update_cache: true
 
-- name: Install Helm
-  become: yes
-  command: bash <  < (curl -s -S -U https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3)
-
 - name: Extract k9s to /bin
   ansible.builtin.unarchive:
-    src: https://github.com/derailed/k9s/releases/download/latest/k9s_Linux_x86_64.tar.gz
+    src: https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz
     dest: /usr/local/bin
     remote_src: yes
     include: [k9s]
-
-
-
-
