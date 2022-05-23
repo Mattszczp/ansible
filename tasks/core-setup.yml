@@ -43,15 +43,15 @@
     - essentials
     - software
 
-- name: Add the flathub flatpak repository remote to the user installation
-  become: yes
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-  tags:
-    - essentials
-    - software
+# - name: Add the flathub flatpak repository remote to the user installation
+#  become: yes
+#  community.general.flatpak_remote:
+#    name: flathub
+#    state: present
+#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+#  tags:
+#    - essentials
+#    - software
 
 - name: Install eseential flatpaks
   become: yes
