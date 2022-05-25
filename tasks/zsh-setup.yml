@@ -16,3 +16,8 @@
   when: oh_my_stats.stat.exists == False
   become_user: kurtwood
 
+- name: Make ZSH default shell
+  become: yes
+  user:
+    name: kurtwood
+    shell: /bin/zsh
