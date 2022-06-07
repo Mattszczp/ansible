@@ -8,7 +8,7 @@
 
 - name: Make sure Stow is installed
   tags: dotfiles, stow, install
-  dnf:
+  apt:
     name: stow
     state: present
 

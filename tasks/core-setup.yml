@@ -1,60 +1,44 @@
-- name: Configure DNF to be faster
+- name: Install some prerequisites
   become: yes
-  blockinfile:
-    path: /etc/dnf/dnf.conf
-    block: |
-      fastestmirror=True
-      max_parallel_downloads=10
-      defaultyes=True
-      keepcache=True
-  tags:
-    - essentials
-
-- name: Install RPM Fusion
-  become: yes
-  dnf:
-    name:
-    - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
-    - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_facts['distribution_major_version']}}.noarch.rpm"
+  apt:
+    name: [apt-transport-https, curl]
     state: present
-    disable_gpg_check: yes
-  tags:
-    - essentials
-    - software
 
-- name: Update Groups
-  become: yes
-  dnf:
-    name:
-      - "@core"
-      - "@multimedia"
-      - "@sound-and-video"
-    state: latest
+- name: Add Brave repos
+  get_url:
+    url: https://brave-browser-apt-beta.s3.brave.com/brave-browser-beta-archive-keyring.gpg
+    dest: /usr/share/keyrings/brave-browser-beta-archive-keyring.gpg
   tags:
     - essentials
     - software
-    - codecs
+    - browser
 
 - name: Install essential programs
   become: yes
-  dnf:
-    name: [firefox, zsh, neovim, tmux, flatpak, git, pip, thunderbird, fzf]
+  apt:
+    name: [brave, zsh, neovim, tmux, flatpak, git, pip, i3, fzf]
   tags:
     - essentials
     - software
 
-# - name: Add the flathub flatpak repository remote to the user installation
-#  community.general.flatpak_remote:
-#    name: flathub
-#    state: present
-#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-#  tags:
-#    - essentials
-#    - software
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  tags:
+    - essentials
+    - software
 
 - name: Install eseential flatpaks
   community.general.flatpak:
-    name: [com.obsproject.Studio, com.discordapp.Discord, org.keepassxc.KeePassXC, org.gimp.GIMP]
+    name:
+      [
+        com.obsproject.Studio,
+        com.discordapp.Discord,
+        org.keepassxc.KeePassXC,
+        org.gimp.GIMP,
+      ]
     state: present
   tags:
     - essentials

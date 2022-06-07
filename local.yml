@@ -1,10 +1,10 @@
 - hosts: localhost
   pre_tasks:
-  - name: Update dnf
-    become: true
-    dnf:
-      update_cache: true
-      state: present
+    - name: Update apt
+      become: true
+      apt:
+        update_cache: true
+        state: present
   tasks:
     - include_tasks: tasks/core-setup.yml
     - include_tasks: tasks/git-setup.yml

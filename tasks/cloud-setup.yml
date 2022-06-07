@@ -1,19 +1,10 @@
 ---
 - name: Add google-cloud-sdk repo
   become: yes
-  yum_repository:
-    name: google-cloud-cli
-    baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
-    description: Google Cloud SDK Repository
-    gpgcheck: true
-    repo_gpgcheck: false
-    gpgkey:
-      - https://packages.cloud.google.com/yum/doc/yum-key.gpg
-      - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 
 - name: Install gcloud and kubectl
   become: yes
-  dnf:
+  apt:
     name: [libxcrypt-compat.x86_64, google-cloud-cli, kubectl]
     update_cache: true
 
@@ -24,29 +15,23 @@
 
 - name: Install AWS CLI
   become: yes
-  dnf:
+  apt:
     name: awscli
     state: latest
 
-- name: make sure dnf-plugins.core installed
-  become: yes
-  dnf:
-    name: dnf-plugins-core
-    state: present
-
 - name: install docker repository
   become: yes
-  command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 
 - name: make sure docker from distro is not installed
   become: yes
-  yum:
-    name: [docker, docker-common, container-selinux, docker-selinux, docker-engine]
+  apt:
+    name:
+      [docker, docker-common, container-selinux, docker-selinux, docker-engine]
     state: absent
 
 - name: install docker
   become: yes
-  dnf:
+  apt:
     name: [docker-ce, docker-ce-cli, containerd.io, docker-compose-plugin]
     state: present
     update_cache: true
@@ -54,17 +39,16 @@
 - name: make sure that I'm in docker group
   become: yes
   ansible.builtin.user:
-    name: kurtwood
+    name: mszczepanski
     groups: [docker]
     append: yes
 
 - name: Install hashicorp repository
   become: yes
-  command: dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
 
 - name: Install terraform and packer
   become: yes
-  dnf:
+  apt:
     name: [terraform, packer]
     state: latest
     update_cache: true

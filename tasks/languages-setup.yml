@@ -1,12 +1,7 @@
 ---
-- name: Install GVM
-  shell: bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-
-- name: Install NVM
-  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
+- name: Install the newest Golang
+- name: Install the newest NodeJS
 - name: Install Python Poetry
   pip:
     name: poetry
     state: latest
-
