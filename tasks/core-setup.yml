@@ -22,15 +22,6 @@
     - neovim
     - core
 
-- name: Install Clang
-  become: true
-  apt:
-    name: ["clang", "clangd"]
-  tags:
-    - install
-    - neovim
-    - core
-
 - name: Install essential programs
   become: yes
   apt:
