@@ -3,7 +3,6 @@
   apt:
     name: zsh
     state: latest
-  shell: bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
 - name: Check that .oh-my-zsh exists
   stat:
@@ -21,3 +20,9 @@
   user:
     name: mszczepanski
     shell: /bin/zsh
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh_tasks
