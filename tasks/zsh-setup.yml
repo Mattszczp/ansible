@@ -5,10 +5,6 @@
     state: latest
   shell: bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
-- name: Install NVM
-  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-  tags: zsh
-
 - name: Check that .oh-my-zsh exists
   stat:
     path: ~/.oh-my-zsh

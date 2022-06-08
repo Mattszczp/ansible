@@ -1,6 +1,9 @@
 ---
-- name: Install the newest Golang
 - name: Install the newest NodeJS
+  apt:
+    name: nodejs
+    state: present
+
 - name: Install Python Poetry
   pip:
     name: poetry
