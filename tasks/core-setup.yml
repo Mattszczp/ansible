@@ -21,7 +21,7 @@
         python3-pip,
         dconf-editor,
         moreutils,
-        xrandr,
+        x11-xserver-utils,
       ]
   tags:
     - essentials
