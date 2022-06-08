@@ -22,6 +22,10 @@
         dconf-editor,
         moreutils,
         x11-xserver-utils,
+        "build-essential",
+        "cmake",
+        "pkg-config",
+        "libpthread-stubs0-dev",
       ]
   tags:
     - essentials
