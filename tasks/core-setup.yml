@@ -45,6 +45,7 @@
         org.gimp.GIMP,
         com.slack.Slack,
         org.videolan.VLC,
+        io.neovim.nvim,
       ]
     state: present
   tags:
