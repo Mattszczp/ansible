@@ -61,23 +61,23 @@
 #     groups: [docker]
 #     append: yes
 
-- name: Install Hashicorp GPG key
-  become: yes
-  get_url:
-    url: https://apt.releases.hashicorp.com/gpg
-    dest: /usr/share/keyrings/hashicorp.gpg
+# - name: Install Hashicorp GPG key
+#   become: yes
+#   get_url:
+#     url: https://apt.releases.hashicorp.com/gpg
+#     dest: /usr/share/keyrings/hashicorp.gpg
 
-- name: Install hashicorp repository
-  become: yes
-  apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main
+# - name: Install hashicorp repository
+#   become: yes
+#   apt_repository:
+#     repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ansible_distribution_release}} main
 
-- name: Install terraform and packer
-  become: yes
-  apt:
-    name: [terraform, packer]
-    state: latest
-    update_cache: true
+# - name: Install terraform and packer
+#   become: yes
+#   apt:
+#     name: [terraform, packer]
+#     state: latest
+#     update_cache: true
 
 - name: Extract k9s to /bin
   ansible.builtin.unarchive:
