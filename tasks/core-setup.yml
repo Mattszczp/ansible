@@ -21,6 +21,7 @@
         python3-pip,
         dconf-editor,
         moreutils,
+        xrandr,
       ]
   tags:
     - essentials
@@ -43,6 +44,8 @@
         com.discordapp.Discord,
         org.keepassxc.KeePassXC,
         org.gimp.GIMP,
+        com.slack.Slack,
+        org.videolan.VLC,
       ]
     state: present
   tags:
