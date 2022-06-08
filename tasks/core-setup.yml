@@ -4,24 +4,24 @@
     name: [apt-transport-https, curl]
     state: present
 
-- name: Add Brave GPG key
-  get_url:
-    url: https://brave-browser-apt-beta.s3.brave.com/brave-browser-beta-archive-keyring.gpg
-    dest: /usr/share/keyrings/brave-browser-beta-archive-keyring.gpg
-  tags:
-    - essentials
-    - software
-    - browser
-
-- name: Add Brave repos
-  apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
-    state: present
-
 - name: Install essential programs
   become: yes
   apt:
-    name: [brave, zsh, neovim, tmux, flatpak, git, pip, i3, fzf]
+    name:
+      [
+        zsh,
+        neovim,
+        tmux,
+        flatpak,
+        git,
+        pip,
+        i3,
+        fzf,
+        golang,
+        python3-pip,
+        dconf-editor,
+        moreutils,
+      ]
   tags:
     - essentials
     - software
