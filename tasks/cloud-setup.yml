@@ -80,6 +80,7 @@
 #     update_cache: true
 
 - name: Extract k9s to /bin
+  become: yes
   ansible.builtin.unarchive:
     src: https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz
     dest: /usr/local/bin
