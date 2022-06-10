@@ -30,6 +30,7 @@
         zsh,
         tmux,
         flatpak,
+        gnome-software-plugin-flatpak,
         git,
         pip,
         i3,
