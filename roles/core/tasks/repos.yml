@@ -1,3 +1,16 @@
+---
+- name: add google-cloud gpg key
+  become: yes
+  get_url:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /usr/share/keyrings/cloud.google.gpg
+
+- name: Add google-cloud-sdk repo
+  become: yes
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+    state: present
+
 - name: Brave Browser archive-keyring.gpg download
   become: yes
   get_url:
@@ -6,17 +19,10 @@
   tags:
     - brave
     - install
+
 - name: Brave Browser PPA setting
   become: true
   shell: echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd63] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
-  tags:
-    - brave
-    - install
-- name: Brave Browser apt installation
-  become: true
-  apt:
-    update_cache: yes
-    name: brave-browser
   tags:
     - brave
     - install

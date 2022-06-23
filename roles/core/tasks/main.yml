@@ -1,3 +1,4 @@
+- include_tasks: repos.yml
 - name: Install essential programs
   become: yes
   apt:
@@ -25,6 +26,10 @@
         libtool-bin,
         gettext,
         gnome-shell-extensions,
+        brave-browser,
+        awscli,
+        google-cloud-cli,
+        kubectl,
       ]
   tags:
     - essentials
@@ -39,12 +44,17 @@
     - essentials
     - software
 
+- name: Add Flathub Beta
+  community.general.flatpak_remote:
+    name: flathub-beta
+    state: present
+    flatpakrepo_url: flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+
 - name: Install eseential flatpaks
   community.general.flatpak:
     name:
       [
         com.obsproject.Studio,
-        com.discordapp.Discord,
         org.keepassxc.KeePassXC,
         org.gimp.GIMP,
         com.slack.Slack,
@@ -55,7 +65,14 @@
     - essentials
     - software
 
-- include_tasks: brave.yml
+- name: Extract k9s to /bin
+  become: yes
+  ansible.builtin.unarchive:
+    src: https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+    include: [k9s]
+
 - include_tasks: git.yml
 - include_tasks: dotfiles.yml
 - include_tasks: zsh.yml

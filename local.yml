@@ -30,4 +30,9 @@
     - name: geerlingguy.helm
       become: yes
   post_tasks:
-    - include_tasks: tasks/cloud-setup.yml
+    - name: make sure that I'm in docker group
+      become: yes
+      ansible.builtin.user:
+        name: mszczepanski
+        groups: [docker]
+        append: yes
