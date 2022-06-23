@@ -48,7 +48,7 @@
   community.general.flatpak_remote:
     name: flathub-beta
     state: present
-    flatpakrepo_url: flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+    flatpakrepo_url: https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 
 - name: Install eseential flatpaks
   community.general.flatpak:
