@@ -30,6 +30,7 @@
         awscli,
         google-cloud-cli,
         kubectl,
+        keepassxc
       ]
   tags:
     - essentials
@@ -55,7 +56,6 @@
     name:
       [
         com.obsproject.Studio,
-        org.keepassxc.KeePassXC,
         org.gimp.GIMP,
         com.slack.Slack,
         org.videolan.VLC,

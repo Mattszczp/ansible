@@ -26,3 +26,12 @@
   tags:
     - brave
     - install
+
+- name: Add KeepassXC PPA
+  become: true
+  apt_repository:
+    url: ppa:phoerious/keepassxc
+    state: present
+  tags:
+    - install
+    - keepassxc
