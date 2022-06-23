@@ -69,3 +69,9 @@
   tags:
     - essentials
     - software
+
+- include_tasks: brave.yml
+- include_tasks: git.yml
+- include_tasks: dotfiles.yml
+- include_tasks: zsh.yml
+- include_tasks: neovim.yml

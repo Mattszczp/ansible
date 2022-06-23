@@ -1,0 +1,5 @@
+- src: geerlingguy.docker
+- src: geerlingguy.nodejs
+- src: geerlingguy.go
+- src: geerlingguy.packer
+- src: geerlingguy.helm

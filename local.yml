@@ -1,17 +1,30 @@
 - hosts: localhost
+  vars:
+    nodejs_version: "18.x"
+    nodejs_npm_global_packages:
+      - yarn
+      - eslint
+      - typescript
+      - typescript-language-server
+      - ts-node
+    go_version: "1.18.3"
+    packer_version: "1.8.2"
+
   pre_tasks:
     - name: Update apt
       become: true
       apt:
         update_cache: true
         state: present
-  tasks:
-    - include_tasks: tasks/core-setup.yml
-    - include_tasks: tasks/brave.yml
-    - include_tasks: tasks/nvim-setup.yml
-    - include_tasks: tasks/git-setup.yml
-    - include_tasks: tasks/zsh-setup.yml
-    - include_tasks: tasks/node-setup.yml
-    - include_tasks: tasks/npm-packages.yml
+  roles:
+    - core
+    - role: geerlingguy.docker
+      become: yes
+    - role: geerlingguy.nodejs
+      become: yes
+    - name: geerlingguy.go
+      become: yes
+    - geerlingguy.packer
+    - geerlingguy.helm
+  post_tasks:
     - include_tasks: tasks/cloud-setup.yml
-    - include_tasks: tasks/dotfiles.yml
