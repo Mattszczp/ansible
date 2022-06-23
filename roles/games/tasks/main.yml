@@ -1,27 +1,24 @@
 ---
 - name: Install Lutris dependencies
   community.general.flatpak:
-  name: [
-    org.gnome.Platform.Compat.i386,
-    org.freedesktop.Platform.GL32.default,
-    org.freedesktop.Platform.GL.default
-  ]
+    name:
+      [
+        org.gnome.Platform.Compat.i386,
+        org.freedesktop.Platform.GL32.default,
+        org.freedesktop.Platform.GL.default,
+      ]
 
 - name: Install launchers (steam, lutris, heroic launcher)
   community.general.flatpak:
-  name: [
-    com.valvesoftware.Steam,
-    com.heroicgameslauncher.hgl,
-  ]
-  state: present
+    name: [com.valvesoftware.Steam, com.heroicgameslauncher.hgl]
+    state: present
 
 - name: Install Lutris
   community.general.flatpak:
-  name: net.lutris.Lutris
-  state: present
+    name: net.lutris.Lutris
+    state: present
 
 - name: Install Discord
   community.general.flatpak:
-  name: com.discordapp.Discord
-  state: present
-  
+    name: com.discordapp.Discord
+    state: present
