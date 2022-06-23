@@ -25,7 +25,9 @@
       become: yes
     - name: geerlingguy.go
       become: yes
-    - geerlingguy.packer
-    - geerlingguy.helm
+    - name: geerlingguy.packer
+      become: yes
+    - name: geerlingguy.helm
+      become: yes
   post_tasks:
     - include_tasks: tasks/cloud-setup.yml
