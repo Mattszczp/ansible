@@ -8,6 +8,7 @@
       - typescript-language-server
       - ts-node
     go_version: "1.18.3"
+    go_checksum: "956f8507b302ab0bb747613695cdae10af99bbd39a90cae522b7c0302cc27245"
     packer_version: "1.8.2"
 
   pre_tasks:
