@@ -10,6 +10,9 @@
     go_version: "1.18.3"
     go_checksum: "956f8507b302ab0bb747613695cdae10af99bbd39a90cae522b7c0302cc27245"
     packer_version: "1.8.2"
+    java_packages:
+      - openjdk-18-jre
+      - openjdk-18-jdk
 
   pre_tasks:
     - name: Update apt
@@ -28,6 +31,8 @@
     - name: geerlingguy.packer
       become: yes
     - name: geerlingguy.helm
+      become: yes
+    - name: geerlingguy.java
       become: yes
   post_tasks:
     - name: make sure that I'm in docker group

@@ -30,7 +30,7 @@
 - name: Add KeepassXC PPA
   become: true
   apt_repository:
-    url: ppa:phoerious/keepassxc
+    repo: ppa:phoerious/keepassxc
     state: present
   tags:
     - install

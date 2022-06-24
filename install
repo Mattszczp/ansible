@@ -3,4 +3,4 @@ sudo add-apt-repository ppa:ansible/ansible
 sudo apt update
 sudo apt install ansible -y
 ansible-galaxy install -r requirements.yml
-ansible-playbook -k local.yml
+ansible-playbook -K local.yml

@@ -3,3 +3,5 @@
 - src: geerlingguy.go
 - src: geerlingguy.packer
 - src: geerlingguy.helm
+- src: geerlingguy.java
+
