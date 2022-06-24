@@ -75,6 +75,23 @@
     dest: /usr/local/bin
     remote_src: yes
     include: [k9s]
+  tags:
+    - software
+    - dev
+    - k9s
+
+
+- name: Extract kind to /bin
+  become: yes
+  ansible.builtin.get_url:
+    url: https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-linux-amd64
+    dest: /usr/local/bin/kind
+    checksum: sha256:https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-linux-amd64.sha256sum
+    mode: 0755
+  tags:
+    - software
+    - dev
+    - kind
 
 - include_tasks: git.yml
 - include_tasks: dotfiles.yml
