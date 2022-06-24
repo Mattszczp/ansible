@@ -32,8 +32,7 @@
         kubectl,
         keepassxc,
         fonts-powerline,
-        gnome-tweaks,
-        lazygit
+        gnome-tweaks
       ]
   tags:
     - essentials
@@ -79,7 +78,6 @@
     - software
     - dev
     - k9s
-
 
 - name: Extract kind to /bin
   become: yes
