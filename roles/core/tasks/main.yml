@@ -30,7 +30,10 @@
         awscli,
         google-cloud-cli,
         kubectl,
-        keepassxc
+        keepassxc,
+        fonts-powerline,
+        gnome-tweaks,
+        lazygit
       ]
   tags:
     - essentials
