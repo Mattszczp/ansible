@@ -1,11 +1,13 @@
 ---
 - name: Git personal setup email
+  tags: git, dotfiles
   git_config:
     name: user.email
     scope: global
     value: "mattszczp@gmail.com"
 
 - name: Git personal setup name
+  tags: git, dotfiles
   git_config:
     name: user.name
     scope: global

@@ -1,5 +1,9 @@
 ---
 - name: add google-cloud gpg key
+  tags:
+    - repos
+    - google-cloud
+    - install
   become: yes
   get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -7,25 +11,34 @@
 
 - name: Add google-cloud-sdk repo
   become: yes
+  tags: [repos, google-cloud, install]
+  tags:
+    - repos
+    - install
+    - google-cloud
   apt_repository:
     repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
     state: present
 
 - name: Brave Browser archive-keyring.gpg download
   become: yes
+  tags: [repos, brave, install]
+  tags:
+    - repos
+    - install
+    - brave
   get_url:
     url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     dest: /usr/share/keyrings/brave-browser-archive-keyring.gpg
-  tags:
-    - brave
-    - install
 
 - name: Brave Browser PPA setting
   become: true
   shell: echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd63] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+  tags: [brave, repos, install]
   tags:
-    - brave
+    - repos
     - install
+    - brave
 
 - name: Add KeepassXC PPA
   become: true
@@ -33,5 +46,6 @@
     repo: ppa:phoerious/keepassxc
     state: present
   tags:
-    - install
+    - repos
     - keepassxc
+    - install
