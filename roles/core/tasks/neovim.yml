@@ -10,3 +10,14 @@
     - install
     - dotfiles
     - neovim
+
+- name: Install Packer
+  tags:
+    - install
+    - neovim
+  ansible.builtin.git:
+    repo: https://github.com/wbthomason/packer.nvim
+    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    depth: 1
+
+
