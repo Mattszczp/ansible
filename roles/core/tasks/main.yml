@@ -32,7 +32,8 @@
         kubectl,
         keepassxc,
         fonts-powerline,
-        gnome-tweaks
+        gnome-tweaks,
+        shellcheck
       ]
   tags:
     - essentials
